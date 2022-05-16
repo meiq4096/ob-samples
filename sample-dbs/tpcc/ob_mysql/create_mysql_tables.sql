@@ -30,9 +30,10 @@ create table dist (d_w_id int
 create table cust (c_w_id int not null
 , c_d_id int not null
 , c_id int not null
-, c_discount decimal(4, 4) not null default 1.0 
+, c_discount decimal(4, 4) not null default 0.0 
 , c_credit char(2)
 , c_last varchar(16) not null
+, c_first varchar(16) not null
 , c_middle char(2) not null
 , c_balance decimal(12, 2)
 , c_ytd_payment decimal(12, 2)
@@ -112,8 +113,7 @@ create table stok (s_i_id int
 , s_dist_09 char(24)
 , s_dist_10 char(24)
 , primary key (s_i_id, s_w_id))tablegroup tpcc_group   USE_BLOOM_FILTER = TRUE 
-partition by hash(s_w_id) partitions 6 
-partition by column((s_i_id, s_w_id, s_order_cnt, s_ytd, s_remote_cnt, s_quantity));
+partition by hash(s_w_id) partitions 6; 
 create table load_hist(
 total_w_cnt int,
 min_w_id int,
